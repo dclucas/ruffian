@@ -1,0 +1,39 @@
+{
+  "name": "ruffian",
+  "version": "0.0.1",
+  "description": "A fake server for easy testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/cucumber/bin/cucumber.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dclucas/ruffian.git"
+  },
+  "keywords": [
+    "fake",
+    "server",
+    "mock",
+    "tdd",
+    "hapi"
+  ],
+  "author": "Diogo Lucas (diogo.lucas@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dclucas/ruffian/issues"
+  },
+  "homepage": "https://github.com/dclucas/ruffian#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "hapi": "^15.2.0",
+    "joi": "^9.2.0",
+    "ramda": "^0.22.1",
+    "uuid": "^2.0.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "cucumber": "^1.3.1",
+    "got": "^6.6.1"
+  }
+}
