@@ -9,9 +9,10 @@ When I send it a payload for a fake <endpoint> endpoint
 Then it accepts my fake
 And it returns the expected response upon fake execution
 Examples:
-| endpoint       |
-| /hello         |
-| /hello/1       |
-| /world/        |
-| /hello/world/  |
-| /hello/world/1 |
+| endpoint                      |
+| /hello                        |
+| /hello/1                      |
+| /world/                       |
+| /hello/world/                 |
+| /hello/world/1                |
+| /hello/world/{id}             |
