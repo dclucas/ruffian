@@ -1,0 +1,5 @@
+[
+    { "path": "/hello", "method": "POST", "payload": "hello" },
+    { "path": "/foo/{id}", "method": "GET", "payload": "foo id" },
+    { "path": "/bar/1", "method": "PATCH", "payload": "bar 1" }
+]

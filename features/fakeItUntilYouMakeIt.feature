@@ -16,3 +16,9 @@ Examples:
 | /hello/world/                 |
 | /hello/world/1                |
 | /hello/world/{id}             |
+
+Scenario: Loading fakes on startup
+Given a set of fakes
+When I start a server and pass them as an argument
+Then the server configures all endpoints
+And it returns the expected response for each fake

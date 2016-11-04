@@ -1,7 +1,7 @@
 module.exports = function () {
     const uuid = require('uuid');
     const port = 3000;
-    const payload = {
+    var payload = {
         method: 'GET', 
         payload: uuid.v4() 
     };
@@ -11,14 +11,13 @@ module.exports = function () {
     //todo: consider removing the hard-coded value below
     const baseUrl = 'localhost:3000';
     const config = require('../../app/config');
-    const server = require('../../app/server')(config);
     const R = require('ramda');
 
     var path;
     var response;
 
     this.Given(/^a running ruffian server$/, function () {
-        return server;
+        return require('../../app/server')(config).then(s => this.server = s);
     });
 
     this.When(/^I send it a payload for a fake (.*) endpoint$/, function (endpoint) {
@@ -39,5 +38,30 @@ module.exports = function () {
             expect(r.body).to.equal(payload.payload);
             return r;
         });
-    });    
+    });
+
+    this.Given(/^a set of fakes$/, function () {
+        payload = require('../fixtures/fakes-set');
+    });
+
+    this.When(/^I start a server and pass them as an argument$/, function () {
+        return require('../../app/server')(config, payload)
+        .then(s => this.server = s);
+    });  
+
+    this.Then(/^the server configures all endpoints$/, function () {
+        // no action here -- load already happened
+    });
+
+    this.Then(/^it returns the expected response for each fake$/, function () {
+        return Promise.all(
+            payload.map(f =>
+                got[f.method.toLowerCase()](`${baseUrl}${f.path}`)
+                .then(response => {
+                    expect(response.body).to.equal(f.payload);
+                    return response;
+                })
+            )
+        );
+    });           
 }

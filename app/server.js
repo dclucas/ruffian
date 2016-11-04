@@ -1,10 +1,11 @@
 'use strict';
 
-module.exports = function(config) {
+module.exports = function(config, fakes = []) {
     const Hapi = require('hapi');
     const server = new Hapi.Server();
     const Joi = require('joi');
     const addFake = require('./addFake');
+    const fakeSchema = require('./fakeSchema');
     //fixme: use destructuring
     server.connection({ port: config.port });
 
@@ -14,11 +15,7 @@ module.exports = function(config) {
         path: '/ruffian/fakes',
         config: {
             validate: {
-                payload: {
-                    method: Joi.string().valid('GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'HEAD', 'OPTIONS').required(),
-                    path: Joi.string().required(),
-                    payload: Joi.any().required()
-                }
+                payload: fakeSchema
             }
         },
         handler: function(request, reply) {
@@ -26,6 +23,8 @@ module.exports = function(config) {
             reply().code(200);
         }
     });
+
+    fakes.forEach(f => addFake(server, f));
 
     return new Promise(function(resolve, reject) {
         server.start(function(err) {
