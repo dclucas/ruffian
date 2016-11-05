@@ -6,6 +6,7 @@ module.exports = function(config, fakes = []) {
     const Joi = require('joi');
     const addFake = require('./addFake');
     const fakeSchema = require('./fakeSchema');
+    const logger = require('./logger');
     //fixme: use destructuring
     server.connection({ port: config.port });
 
