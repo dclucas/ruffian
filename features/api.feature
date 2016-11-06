@@ -1,4 +1,4 @@
-Feature: fake setup
+Feature: ruffian API
     As a developer
     I want ruffian to allow me the creation of fake endpoints on the fly
     So that I can stub my external dependencies

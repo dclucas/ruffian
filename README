@@ -13,9 +13,14 @@ npm install -g ruffian
 ```
 And then start it through the cli:
 ```
-
+ruffian
 ```
 
+You can also clone this repo and start the server by doing:
+```
+npm install
+npm start
+```
 
 ## Setting up fakes through the REST interface
 
