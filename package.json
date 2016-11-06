@@ -1,11 +1,14 @@
 {
   "name": "ruffian",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A fake server for easy testing",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/cucumber/bin/cucumber.js",
     "start": "node index.js"
+  },
+  "bin": {
+    "ruffian": "bin/ruffian"
   },
   "repository": {
     "type": "git",
@@ -25,11 +28,13 @@
   },
   "homepage": "https://github.com/dclucas/ruffian#readme",
   "dependencies": {
+    "cli": "^1.0.1",
     "co": "^4.6.0",
     "hapi": "^15.2.0",
     "joi": "^9.2.0",
     "ramda": "^0.22.1",
-    "uuid": "^2.0.3"
+    "uuid": "^2.0.3",
+    "winston": "^2.3.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

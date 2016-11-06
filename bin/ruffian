@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+'use strict'
+const cfg = require('../app/config');
+const addFake = require('../app/addFake');
+const cli = require('cli');
+const logger = require('../app/logger');
+const options = cli.parse({
+    file: [ 'f', 'A set of fakes to set up.', 'file', null ] 
+});
+
+var server;
+
+if (options.file) {
+    const fs = require('fs');
+    fs.readFile(options.file, 'utf8', function (err, data) {
+        if (err) throw err; // we'll not consider error handling for now
+        const fakes = JSON.parse(data);
+        server = require('../app/server')(cfg, fakes)
+        .then((s) => {
+            logger.info(`server running at ${s.info.uri}`)
+        });
+    });
+}
+else {
+    server = require('../app/server')(cfg)
+    .then((s) => {
+        console.log(`server running at ${s.info.uri}`)
+    });
+}

@@ -12,6 +12,7 @@ module.exports = function () {
     const baseUrl = 'localhost:3000';
     const config = require('../../app/config');
     const R = require('ramda');
+    const child_process = require('child_process');
 
     var path;
     var response;
@@ -61,7 +62,20 @@ module.exports = function () {
                     expect(response.body).to.equal(f.payload);
                     return response;
                 })
+                .catch(function(err) {
+                    expect(err, `${f.method} request against ${f.path} failed.`).to.be.undefined;
+                })
             )
         );
-    });           
+    });
+
+    this.When(/^I start the CLI and pass it as an argument$/, function () {
+        this.ruffianProcess = child_process.exec('bin/ruffian -f features/fixtures/fakes-set.json');
+    });
+
+    this.Then(/^ruffian starts up successfully$/, function () {
+        //fixme: even though the next step will check this too, there should be 
+        // code here to check if the server is up and running. Do a quick GET on /ruffian/fakes
+        // when this handler is implemented.
+    });    
 }
