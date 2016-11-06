@@ -1,6 +1,6 @@
 {
   "name": "ruffian",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A fake server for easy testing",
   "main": "index.js",
   "scripts": {
