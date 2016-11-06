@@ -22,6 +22,21 @@ npm install
 npm start
 ```
 
+## Setting up fakes through the CLI
+
+You can pass a JSON file to the CLI:
+
+```
+ruffian -f fakes.json
+```
+
+Ruffian expects the file to contain an array of objects, each with the following attributes:
+* method: the HTTP verb to respond to. Possible values: GET, POST, PATCH, PUT, 
+HEAD, OPTIONS
+* path: route from ruffians root "/". All routes must start with a backslash. 
+Ruffian accepts any format supported by hapi
+* payload: the payload Ruffian should return when the endpoint is exercised
+
 ## Setting up fakes through the REST interface
 
 Once the server is running, you can configure behavior by posting data to the 
@@ -38,7 +53,3 @@ curl -X POST -H "Cache-Control: no-cache" -H "Postman-Token: ea3a34e1-ee5b-53a6-
 ## Setting up fakes through the module
 
 TO-DO: finish lib handling and document how-to
-
-## Setting up fakes through the CLI
-
-TO-DO: implement CLI and document how-to
